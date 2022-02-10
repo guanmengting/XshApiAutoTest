@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="巡司河安全监测管理平台测试套件">
+    <test name="巡司河安全监测管理平台测试用例">
+        <classes>
+            <class name="com.zfsmart.cases.LoginTest">
+                <methods>
+                    <include name="loginFalse"/>
+                    <include name="loginTrue"/>
+                </methods>
+            </class>
+            <class name="com.zfsmart.cases.LoginProjectTest">
+                <methods>
+                    <include name="loginProject"/>
+                </methods>
+            </class>
+            <class name="com.zfsmart.cases.ArchiveTagAddTest">
+                <methods>
+                    <include name="archiveTagAdd"/>
+                </methods>
+            </class>
+            <class name="com.zfsmart.cases.ArchiveTagGetListTest">
+                <methods>
+                    <include name="archiveTagGetList"/>
+                </methods>
+            </class>
+            <class name="com.zfsmart.cases.ArchiveTagGetInfoTest">
+                <methods>
+                    <include name="archiveTagGetInfo"/>
+                </methods>
+            </class>
+            <class name="com.zfsmart.cases.ArchiveTagEditTest">
+                <methods>
+                    <include name="archiveTagEdit"/>
+                </methods>
+            </class>
+            <class name="com.zfsmart.cases.ArchiveTagDeleteTest">
+                <methods>
+                    <include name="archiveTagDelete"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.zfsmart.config.ExtentTestNGIReporterListener"/>
+    </listeners>
+</suite>
