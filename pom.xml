@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>Cases</module>
-        <module>Api</module>
     </modules>
 
     <properties>
