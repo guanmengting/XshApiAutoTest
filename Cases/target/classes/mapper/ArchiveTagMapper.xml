@@ -9,25 +9,34 @@
         <result property="name" column="name"/>
         <result property="expected" column="expected"/>
     </resultMap>
-    <resultMap id="ArchiveTagMap" type="com.zfsmart.model.ArchiveTag">
-        <id property="id" column="id"/>
+    <resultMap id="ArchiveTagEditCaseMap" type="com.zfsmart.model.ArchiveTagEditCase">
+        <id property="caseId" column="case_id"/>
         <result property="name" column="name"/>
+        <result property="expected" column="expected"/>
     </resultMap>
     <resultMap id="ArchiveTagDeleteCaseMap" type="com.zfsmart.model.ArchiveTagDeleteCase">
         <id property="caseId" column="case_id"/>
         <result property="name" column="name"/>
         <result property="expected" column="expected"/>
     </resultMap>
+    <resultMap id="ArchiveTagMap" type="com.zfsmart.model.ArchiveTag">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
 
     <select id="archiveTagAddCase" parameterType="Integer" resultMap="ArchiveTagAddCaseMap">
         select * from xunsihe_test.archive_tag_add_case where case_id=#{caseId}
     </select>
 
-    <select id="archiveTagAdd" parameterType="String" resultMap="ArchiveTagMap">
-        select id,name from xunsihe_cloud.archive_tag where name=#{name}
+    <select id="archiveTagEditCase" parameterType="Integer" resultMap="ArchiveTagEditCaseMap">
+        select * from xunsihe_test.archive_tag_edit_case where case_id=#{caseId}
     </select>
 
     <select id="archiveTagDeleteCase" parameterType="Integer" resultMap="ArchiveTagDeleteCaseMap">
         select * from xunsihe_test.archive_tag_delete_case where case_id=#{caseId}
+    </select>
+
+    <select id="archiveTag" parameterType="String" resultMap="ArchiveTagMap">
+        select id,name from xunsihe_cloud.archive_tag where name=#{name}
     </select>
 </mapper>

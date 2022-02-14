@@ -2,40 +2,30 @@ package com.zfsmart.cases;
 
 import com.zfsmart.config.TestConfig;
 import com.zfsmart.model.ArchiveTag;
-import com.zfsmart.model.ArchiveTagAddCase;
 import com.zfsmart.model.ArchiveTagDeleteCase;
 import com.zfsmart.utils.CookiesUtil;
 import com.zfsmart.utils.DatabaseUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ArchiveTagDeleteTest {
     @Test(dependsOnGroups = "loginTrue",description = "添加标签接口测试")
     public void archiveTagDelete() throws IOException {
-        SqlSession session = DatabaseUtil.getSqlSession();
-
-        ArchiveTag archiveTag = session.selectOne("archiveTagAdd","auto-test-01");
-        System.out.println(archiveTag);
-
-        ArchiveTagDeleteCase archiveTagDeleteCase = session.selectOne("archiveTagDeleteCase",1);
+        System.out.println();
+        ArchiveTagDeleteCase archiveTagDeleteCase = TestConfig.session.selectOne("archiveTagDeleteCase",1);
         System.out.println(archiveTagDeleteCase.toString());
 
         ArchiveTagGetListTest test = new ArchiveTagGetListTest();
-        Map<String,Object> map = (Map<String,Object>) test.getResult(archiveTagDeleteCase.getName());
+        Map<String,Object> map = (Map<String,Object>) test.getResult(archiveTagDeleteCase.getName() + "-autoEdit");
         ArrayList<Map<String,Object>> list = (ArrayList<Map<String,Object>>) map.get("actualList");
         String ids = "";
         for (int i=0;i<Math.min(list.size(),2);i++) {
@@ -46,9 +36,22 @@ public class ArchiveTagDeleteTest {
             ids += tagMap.get("id").toString();
         }
 
-        //发送请求，获取结果
+        //发送请求
         Object object = getResult(ids);
-        Assert.assertEquals("200",object.toString());
+        //验证结果
+        Assert.assertEquals(archiveTagDeleteCase.getExpected(),object.toString());
+
+        Map<String,Object> map2 = (Map<String,Object>) test.getResult(archiveTagDeleteCase.getName() + "-autoEdit");
+        ArrayList<Map<String,Object>> list2 = (ArrayList<Map<String,Object>>) map2.get("actualList");
+        Assert.assertEquals(0,list2.size());
+    }
+
+    @Test(dependsOnMethods = {"archiveTagDelete"},description = "校验数据新增")
+    public void archiveTagDeleteCheck() throws IOException {
+        SqlSession session = DatabaseUtil.getSqlSession();
+        ArchiveTagDeleteCase archiveTagDeleteCase = session.selectOne("archiveTagDeleteCase",1);
+        ArchiveTag archiveTag = session.selectOne("archiveTag",archiveTagDeleteCase.getName() + "-autoEdit");
+        Assert.assertNull(archiveTag);
     }
 
     private Object getResult(String ids) throws IOException {

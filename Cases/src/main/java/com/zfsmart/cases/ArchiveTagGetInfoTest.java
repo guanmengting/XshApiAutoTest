@@ -1,11 +1,9 @@
 package com.zfsmart.cases;
 
 import com.zfsmart.config.TestConfig;
-import com.zfsmart.utils.ApiUrlUtil;
 import com.zfsmart.utils.CookiesUtil;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
@@ -13,27 +11,24 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ArchiveTagGetInfoTest {
     @Test(dependsOnGroups = "loginTrue",description = "添加标签接口测试")
     public void archiveTagGetInfo() throws IOException {
-//        SqlSession session = DatabaseUtil.getSqlSession();
-//        ArchiveTagGetListCase archiveTagGetListCase = session.selectOne("archiveTagAddCasexxxxxx",1);
-//        System.out.println(archiveTagGetListCase.toString());
-
+        System.out.println();
         ArchiveTagGetListTest test = new ArchiveTagGetListTest();
         Map<String,Object> map = (Map<String,Object>) test.getResult(null);
         ArrayList<Map<String,Object>> list = (ArrayList<Map<String,Object>>) map.get("actualList");
         Map<String,Object> tagMap = list.get(0);
-        //发送请求，获取结果
+        //发送请求
         Object object = getResult((Integer) tagMap.get("id"));
+        //验证结果
         Assert.assertEquals("200",object.toString());
 //        for (Map<String,Object> tagMap : list) {
-//            //发送请求，获取结果
+//            //发送请求
 //            Object object = getResult((Integer) tagMap.get("id"));
+//            //验证结果
 //            Assert.assertEquals("200",object.toString());
 //        }
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<suite name="巡司河安全监测管理平台测试套件">
-    <test name="巡司河安全监测管理平台测试用例">
+<suite name="巡司河安全监测管理平台测试套件" parallel="tests">
+    <test name="巡司河安全监测管理平台测试用例" preserve-order="false">
         <classes>
             <class name="com.zfsmart.cases.LoginTest">
                 <methods>
-                    <include name="loginFalse"/>
                     <include name="loginTrue"/>
+                    <include name="loginFalse"/>
                 </methods>
             </class>
             <class name="com.zfsmart.cases.LoginProjectTest">
@@ -16,6 +16,7 @@
             <class name="com.zfsmart.cases.ArchiveTagAddTest">
                 <methods>
                     <include name="archiveTagAdd"/>
+                    <include name="archiveTagAddCheck"/>
                 </methods>
             </class>
             <class name="com.zfsmart.cases.ArchiveTagGetListTest">
@@ -31,16 +32,19 @@
             <class name="com.zfsmart.cases.ArchiveTagEditTest">
                 <methods>
                     <include name="archiveTagEdit"/>
+                    <include name="archiveTagEditCheck"/>
                 </methods>
             </class>
             <class name="com.zfsmart.cases.ArchiveTagDeleteTest">
                 <methods>
                     <include name="archiveTagDelete"/>
+                    <include name="archiveTagDeleteCheck"/>
                 </methods>
             </class>
         </classes>
     </test>
     <listeners>
         <listener class-name="com.zfsmart.config.ExtentTestNGIReporterListener"/>
+        <listener class-name="com.zfsmart.config.RePrioritizingListener"></listener>
     </listeners>
 </suite>

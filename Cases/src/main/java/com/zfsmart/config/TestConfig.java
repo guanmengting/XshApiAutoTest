@@ -2,6 +2,7 @@ package com.zfsmart.config;
 
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
+import org.apache.ibatis.session.SqlSession;
 
 public class TestConfig {
     public static String loginUrl;
@@ -13,4 +14,5 @@ public class TestConfig {
 
     public static HttpClient httpClient;
     public static CookieStore cookieStore;
+    public static SqlSession session;
 }
