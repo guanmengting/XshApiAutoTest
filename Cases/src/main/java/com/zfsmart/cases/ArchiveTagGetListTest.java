@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArchiveTagGetListTest {
-    @Test(dependsOnGroups = "loginTrue",description = "添加标签接口测试")
+    @Test(dependsOnGroups = "loginTrue",description = "获取标签列表接口测试")
     public void archiveTagGetList() throws IOException {
         //发送请求
         Map<String,Object> map = (Map<String,Object>) getResult(null);

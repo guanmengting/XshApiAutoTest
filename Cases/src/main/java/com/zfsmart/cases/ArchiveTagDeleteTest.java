@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ArchiveTagDeleteTest {
-    @Test(dependsOnGroups = "loginTrue",description = "添加标签接口测试")
+    @Test(dependsOnGroups = "loginTrue",description = "删除标签接口测试")
     public void archiveTagDelete() throws IOException {
         System.out.println();
         ArchiveTagDeleteCase archiveTagDeleteCase = TestConfig.session.selectOne("archiveTagDeleteCase",1);
@@ -46,7 +46,7 @@ public class ArchiveTagDeleteTest {
         Assert.assertEquals(0,list2.size());
     }
 
-    @Test(dependsOnMethods = {"archiveTagDelete"},description = "校验数据新增")
+    @Test(dependsOnMethods = {"archiveTagDelete"},description = "校验数据删除")
     public void archiveTagDeleteCheck() throws IOException {
         SqlSession session = DatabaseUtil.getSqlSession();
         ArchiveTagDeleteCase archiveTagDeleteCase = session.selectOne("archiveTagDeleteCase",1);

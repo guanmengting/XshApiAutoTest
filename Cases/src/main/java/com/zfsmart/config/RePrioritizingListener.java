@@ -47,7 +47,5 @@ public class RePrioritizingListener implements IAnnotationTransformer {
         String printText = testMethod.getName() + " Priority = " + concatenatedPriority;
         Reporter.log(printText);
 //        System.out.println(printText);
-
     }
-
 }

@@ -36,7 +36,7 @@ public class ArchiveTagEditTest {
         Assert.assertEquals(archiveTagEditCase.getExpected(),object.toString());
     }
 
-    @Test(dependsOnMethods = {"archiveTagEdit"},description = "校验数据新增")
+    @Test(dependsOnMethods = {"archiveTagEdit"},description = "校验数据修改")
     public void archiveTagEditCheck() throws IOException {
         SqlSession session = DatabaseUtil.getSqlSession();
         ArchiveTagEditCase archiveTagEditCase = session.selectOne("archiveTagEditCase",1);

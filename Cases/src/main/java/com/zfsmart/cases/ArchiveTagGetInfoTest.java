@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class ArchiveTagGetInfoTest {
-    @Test(dependsOnGroups = "loginTrue",description = "添加标签接口测试")
+    @Test(dependsOnGroups = "loginTrue",description = "获取标签详情接口测试")
     public void archiveTagGetInfo() throws IOException {
         System.out.println();
         ArchiveTagGetListTest test = new ArchiveTagGetListTest();
